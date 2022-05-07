@@ -6,9 +6,7 @@ import express from 'express'
 import routes from './router'
 
 const app = express()
-app.use(cors({
-  origin: process.env.URL_ORIGIN
-}))
+app.use(cors())
 app.use(express.json())
 
 // Routes

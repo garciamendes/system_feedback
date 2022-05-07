@@ -4,25 +4,41 @@ import React, { FormEvent, useState } from 'react'
 // Project
 import { ScreenshortBtn } from '../screenshort_btn'
 import { isNull } from 'lodash'
+import { api, apiCreate } from '../../../services/api'
+import { Loader } from '../../Loader'
 
 export function FeedbackBug() {
   // State
-  const [text, setText] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [comment, setComment] = useState('')
   const [screenshot, setScreenshot] = useState<string | null>(null)
 
-  function handleSendFeedback(event: FormEvent) {
+  async function handleSendFeedback(event: FormEvent) {
     event.preventDefault()
+    setIsLoading(true)
 
-    console.log({
-      text, screenshot
-    })
+    const data = {
+      type: 'BUG',
+      comment,
+      screenshot
+    }
+
+    try {
+      await api.post('/feedbacks', data)
+    } catch (error) {
+      console.log(error);
+    }
+
+    setComment('')
+    setScreenshot(null)
+    setIsLoading(false)
   }
 
   return (
     <div className='container_feedback_selected'>
       <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
         cols={30}
         rows={6}
         placeholder='Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo...'
@@ -33,10 +49,14 @@ export function FeedbackBug() {
           onScreenshotTosk={setScreenshot}
         />
         <button
-          className={`send ${((text.length > 0) || (!isNull(screenshot))) ? 'not_disable' : ''}`}
+          className={`send ${((comment.length > 0) || (!isNull(screenshot))) ? 'not_disable' : ''}`}
           onClick={handleSendFeedback}
         >
-          Enviar feedback
+          {isLoading ? (
+            <Loader />
+          ) : (
+            'Enviar feedback'
+          )}
         </button>
       </div>
     </div>

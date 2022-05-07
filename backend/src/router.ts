@@ -2,11 +2,9 @@
 import express, { Request, Response } from 'express'
 
 // Third party
-import nodemailer from 'nodemailer'
 import { NodemailerMailAdapter } from './adapters/nodemailer/nodemailer_mail_adapter';
 
 // Local
-import { prisma } from './prisma'
 import { PrismaFeedbacksRepository } from './repositories/Prisma/prisma_feedbacks_repository';
 import { SubmitFeedbackUseCase } from './use-cases/submit_feedback_use_case';
 
