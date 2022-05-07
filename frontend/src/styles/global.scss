@@ -1,0 +1,25 @@
+:root {
+  // Light
+  --color_black: #09090A;
+  --color_white: #FFFFFF;
+  --color_violent: #8257E5;
+  --color_black_light: #18181B;
+  --color_gray: #A1A1AA;
+  --color_black_mid: #27272A;
+  --color_gray_light: #52525B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscal;
+}
+
+html, body, #root {
+  position: relative;
+  height: 100% !important;
+  background-color: var(--color_black);
+}

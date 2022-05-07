@@ -1,0 +1,17 @@
+.loader {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: loader 2s linear infinite;
+}
+
+@-webkit-keyframes loader {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes loader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
